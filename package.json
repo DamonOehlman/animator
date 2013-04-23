@@ -1,0 +1,24 @@
+{
+  "name": "animator",
+  "description": "Hook into request animation frame or setInterval if rAF not available",
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "tags": [
+    "requestanimationframe",
+    "animation"
+  ],
+  "version": "0.0.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DamonOehlman/animator.git"
+  },
+  "bugs": {
+    "url": "http://github.com/DamonOehlman/animator/issues"
+  },
+  "scripts": {
+  },
+  "contributors": []
+}
