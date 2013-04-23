@@ -6,11 +6,9 @@
     "requestanimationframe",
     "animation"
   ],
-  "version": "0.0.0",
-  "dependencies": {
-  },
-  "devDependencies": {
-  },
+  "version": "0.1.0",
+  "dependencies": {},
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/DamonOehlman/animator.git"
@@ -18,7 +16,6 @@
   "bugs": {
     "url": "http://github.com/DamonOehlman/animator/issues"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "contributors": []
 }
