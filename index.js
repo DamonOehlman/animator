@@ -1,12 +1,3 @@
-/**
-The animator centralizes the callbacks requiring regular update intervals in Tile5.  
-This simple utility module exposes `attach` and `detach` methods that allow other
-classes in Tile5 to fire callbacks on a regular basis without needing to hook into
-the likes of `setInterval` to run animation routines.
-
-The animator will intelligently use `requestAnimationFrame` if available, and if not
-will fall back to a `setInterval` call that will run optimized for 60fps.
-*/
 var active = false,
     FRAME_RATE = 1000 / 60,
     TEST_PROPS = [
@@ -29,9 +20,6 @@ var active = false,
 function frame(tickCount) {
     var ii, cbData;
 
-    // increment the frame index
-    frameIndex++;
-
     // set the tick count in the case that it hasn't been set already
     tickCount = tickCount || window.mozAnimationStartTime || Date.now();
     
@@ -41,29 +29,20 @@ function frame(tickCount) {
 
         // check to see if this callback should fire this frame
         if (frameIndex % cbData.every === 0) {
-            cbData.cb(tickCount);
+            cbData.cb(tickCount, frameIndex);
         } // if
     } // for
     
+    // increment the frame index
+    frameIndex++;
+
     // schedule the animator for another call
     if (useAnimFrame && active) {
         animFrame(frame);
     } // if
 } // frame
 
-var animator = module.exports = function(callback, every) {
-    callbacks[callbacks.length] = {
-        cb: callback,
-        every: every ? Math.round(every / FRAME_RATE) : 1
-    };
-
-    if (! active) {
-        // bind to the animframe callback
-        active = (useAnimFrame ? animFrame(frame) : setInterval(frame, 1000 / 60)) || true;
-    }
-};
-
-animator.detach = function(callback) {
+function detach(callback) {
     var ii;
 
     // iterate through the callbacks and remove the specified one
@@ -78,5 +57,22 @@ animator.detach = function(callback) {
     if (callbacks.length === 0 && (! useAnimFrame)) {
         clearInterval(active);
         active = false;
+    }    
+}
+
+var animate = module.exports = function(callback, every) {
+    callbacks[callbacks.length] = {
+        cb: callback,
+        every: every ? Math.round(every / FRAME_RATE) : 1
+    };
+
+    if (! active) {
+        // bind to the animframe callback
+        active = (useAnimFrame ? animFrame(frame) : setInterval(frame, 1000 / 60)) || true;
     }
+
+    // return a detach helper
+    return {
+        stop: detach.bind(null, callback)
+    };
 };
