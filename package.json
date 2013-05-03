@@ -1,5 +1,5 @@
 {
-  "name": "animate",
+  "name": "animator",
   "description": "Hook into request animation frame or setInterval if rAF not available",
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "tags": [
