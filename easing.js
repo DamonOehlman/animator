@@ -1,17 +1,5 @@
-// initialise constants
-var BACK_S = 1.70158,
-    HALF_PI = Math.PI / 2,
-    ANI_WAIT = 1000 / 60 | 0,
-    
-    // initialise math function shortcuts
-    abs = Math.abs,
-    pow = Math.pow,
-    sin = Math.sin,
-    asin = Math.asin,
-    cos = Math.cos;
-
 /*
-Easing functions
+# Easing functions
 
 sourced from Robert Penner's excellent work:
 http://www.robertpenner.com/easing/
@@ -22,7 +10,21 @@ Functions follow the function format of fn(t, b, c, d, s) where:
 - c = change
 - d = duration
 */
-var easingFns = {
+
+// initialise constants
+var BACK_S = 1.70158,
+    HALF_PI = Math.PI / 2,
+    TWO_PI = Math.PI * 2,
+    ANI_WAIT = 1000 / 60 | 0,
+    
+    // initialise math function shortcuts
+    abs = Math.abs,
+    pow = Math.pow,
+    sin = Math.sin,
+    asin = Math.asin,
+    cos = Math.cos;
+
+var easingFns = module.exports = {
     linear: function(t, b, c, d) {
         return c*t/d + b;
     },
@@ -37,9 +39,11 @@ var easingFns = {
         return c*((t=t/d-1)*t*((BACK_S+1)*t + BACK_S) + 1) + b;
     },
 
+    /*
     backinout: function(t, b, c, d) {
         return ((t/=d/2)<1) ? c/2*(t*t*(((BACK_S*=(1.525))+1)*t-BACK_S))+b : c/2*((t-=2)*t*(((BACK_S*=(1.525))+1)*t+BACK_S)+2)+b;
-    }, 
+    },
+    */ 
 
     /* bounce easing functions */
 
@@ -137,9 +141,4 @@ var easingFns = {
     sineinout: function(t, b, c, d) {
         return -c/2 * (cos(Math.PI*t/d) - 1) + b;
     }
-};
-
-module.exports = function(typeName) {
-    typeName = typeName.replace(/[\-\_\s\.]/g, '').toLowerCase();
-    return easingFns[typeName] || easingFns.linear;
 };

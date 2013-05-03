@@ -21,7 +21,11 @@ function frame(tickCount) {
     var ii, cbData;
 
     // set the tick count in the case that it hasn't been set already
-    tickCount = tickCount || window.mozAnimationStartTime || Date.now();
+    // tickCount = tickCount || window.mozAnimationStartTime || Date.now();
+
+    // replace tickcount with date.now
+    // TODO: replace with the correct timing helper
+    tickCount = Date.now();
     
     // iterate through the callbacks
     for (ii = callbacks.length; ii--; ) {
@@ -54,13 +58,19 @@ function detach(callback) {
     } // for
 
     // if we have no callbacks remaining, deativate
-    if (callbacks.length === 0 && (! useAnimFrame)) {
-        clearInterval(active);
+    if (callbacks.length === 0) {
+        if (! useAnimFrame) {
+            clearInterval(active);
+        }
+
         active = false;
     }    
 }
 
-var animate = module.exports = function(callback, every) {
+/**
+## animator
+*/
+var animator = module.exports = function(callback, every) {
     callbacks[callbacks.length] = {
         cb: callback,
         every: every ? Math.round(every / FRAME_RATE) : 1
@@ -75,4 +85,28 @@ var animate = module.exports = function(callback, every) {
     return {
         stop: detach.bind(null, callback)
     };
+};
+
+/**
+## tween(duration, callback)
+*/
+animator.tween = function(callback, duration) {
+    var startTicks = Date.now(),
+        tween;
+
+    // initialise the duration to 1000 if not set
+    duration = duration || 1000;
+
+    // start the tween
+    tween = animator(function(tickCount) {
+        // calculate the updated value
+        var elapsed = (tickCount || Date.now()) - startTicks,
+            complete = elapsed >= duration,
+            ret;
+
+        ret = callback(elapsed, duration, complete);
+        if (complete || (typeof ret != 'undefined' && (! ret))) {
+            tween.stop();
+        }
+    });
 };
