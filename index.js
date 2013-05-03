@@ -17,6 +17,10 @@ var active = false,
         return animFrame;
     })();
 
+function tick() {
+    return (typeof performance != 'undefined' ? performance : Date).now()
+}
+
 function frame(tickCount) {
     var ii, cbData;
 
@@ -25,7 +29,7 @@ function frame(tickCount) {
 
     // replace tickcount with date.now
     // TODO: replace with the correct timing helper
-    tickCount = Date.now();
+    tickCount = tickCount || tick();
     
     // iterate through the callbacks
     for (ii = callbacks.length; ii--; ) {
@@ -91,7 +95,7 @@ var animator = module.exports = function(callback, every) {
 ## tween(duration, callback)
 */
 animator.tween = function(callback, duration) {
-    var startTicks = Date.now(),
+    var startTicks = tick(),
         tween;
 
     // initialise the duration to 1000 if not set
@@ -100,7 +104,7 @@ animator.tween = function(callback, duration) {
     // start the tween
     tween = animator(function(tickCount) {
         // calculate the updated value
-        var elapsed = (tickCount || Date.now()) - startTicks,
+        var elapsed = (tickCount || tick()) - startTicks,
             complete = elapsed >= duration,
             ret;
 
