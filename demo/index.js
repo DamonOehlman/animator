@@ -1,5 +1,5 @@
-var animator = require('./'),
-    easing = require('./easing'),
+var animator = require('../'),
+    easing = require('../easing'),
     crel = require('crel'),
     animations,
     canvas,
