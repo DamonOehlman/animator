@@ -1,5 +1,4 @@
 var animator = require('../'),
-    easing = require('../easing'),
     crel = require('crel'),
     animations,
     canvas,
@@ -7,7 +6,7 @@ var animator = require('../'),
 
 function drawani(canvas, easingType) {
     var context = canvas.getContext('2d'),
-        easeFn = easing[easingType],
+        easeFn = animator.easing[easingType],
         x, y;
 
     animator.tween(function(elapsed, duration, complete) {
@@ -24,7 +23,7 @@ window.addEventListener('load', function() {
     var buttonContainer = document.getElementById('easing-types'),
         easingTypeSelect = crel('select'),
         btnAnimate = crel('button', 'animate'),
-        easingTypes = Object.keys(easing),
+        easingTypes = Object.keys(animator.easing),
         canvas;
 
     easingTypes.forEach(function(easingType) {
