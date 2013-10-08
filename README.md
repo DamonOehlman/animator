@@ -1,4 +1,4 @@
-# animate
+# animator
 
 Hook into request animation frame or setInterval if rAF not available.
 
