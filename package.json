@@ -8,7 +8,9 @@
   ],
   "version": "0.2.1",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "crel": "~1.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://bitbucket.org/DamonOehlman/animator.git"
