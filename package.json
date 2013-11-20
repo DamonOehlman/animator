@@ -13,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/DamonOehlman/animator.git"
+    "url": "https://github.com/DamonOehlman/animator.git"
   },
   "bugs": {
-    "url": "https://bitbucket.org/DamonOehlman/animator/issues"
+    "url": "https://github.com/DamonOehlman/animator/issues"
   },
   "main": "index.js",
   "directories": {
