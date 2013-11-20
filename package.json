@@ -17,5 +17,14 @@
   },
   "bugs": {
     "url": "https://bitbucket.org/DamonOehlman/animator/issues"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gendocs": "gendocs > README.md"
+  },
+  "license": "MIT"
 }
