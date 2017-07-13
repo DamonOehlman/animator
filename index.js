@@ -20,6 +20,14 @@
 
   <<< examples/stop.js
 
+  ## Easing
+
+  As part of the animator library, a suite of [easing equations](http://robertpenner.com/easing/)
+  have been included which make things pretty interesting.  Here is a larger example of what can be done
+  using `animator`:
+
+  <<< examples/easing.js
+
 **/
 (function (root, factory) {
   if (typeof exports === 'object') {
