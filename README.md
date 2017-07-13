@@ -28,9 +28,8 @@ that would execute **approximately** every 100ms.
 ```js
 var animator = require('animator');
 
-animator(function(tick) {
-  console.log(tick);
-}, 100);
+animator(tick => console.log(tick), 100);
+
 ```
 
 To remove an animation callback from the centralized list, use the detach function that is provided in the result of the animator function:

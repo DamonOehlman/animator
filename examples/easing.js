@@ -1,18 +1,13 @@
-var animator = require('..');
-var crel = require('crel');
-var animations;
-var canvas;
-var context;
+const animator = require('..');
+const crel = require('crel');
 
 function drawani(canvas, easingType) {
-  var context = canvas.getContext('2d');
-  var easeFn = animator.easing[easingType];
-  var x;
-  var y;
+  const context = canvas.getContext('2d');
+  const easeFn = animator.easing[easingType];
 
   animator.tween(function(elapsed, duration, complete) {
-    x = easeFn(elapsed, 100, 400, duration);
-    y = easeFn(elapsed, 100, 400, duration);
+    const x = easeFn(elapsed, 100, 400, duration);
+    const y = easeFn(elapsed, 100, 400, duration);
 
     // NOTE: clear rect is so slow...
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -20,21 +15,25 @@ function drawani(canvas, easingType) {
   }, 1500);
 }
 
-window.addEventListener('load', function() {
-  var buttonContainer = crel('div');
-  var easingTypeSelect = crel('select');
-  var btnAnimate = crel('button', 'animate');
-  var easingTypes = Object.keys(animator.easing);
-  var canvas;
+window.addEventListener('DOMContentLoaded', () => {
+  const buttonContainer = crel('div');
+  const easingTypeSelect = crel('select');
+  const btnAnimate = crel('button', 'animate');
+  const easingTypes = Object.keys(animator.easing);
 
-  easingTypes.forEach(function(easingType) {
-    var opt = crel('option');
+  const canvas = crel('canvas', {
+    width: 600,
+    height: 600
+  });
+
+  easingTypes.forEach(easingType => {
+    const opt = crel('option');
 
     opt.text = easingType;
     easingTypeSelect.add(opt, null);
   });
 
-  btnAnimate.addEventListener('click', function() {
+  btnAnimate.addEventListener('click', () => {
     drawani(canvas, easingTypes[easingTypeSelect.selectedIndex]);
   });
 
@@ -43,9 +42,6 @@ window.addEventListener('load', function() {
 
   // create the canvas
   document.body.appendChild(buttonContainer);
-  document.body.insertBefore(canvas = crel('canvas', {
-    width: 600,
-    height: 600
-  }), buttonContainer);
+  document.body.insertBefore(canvas, buttonContainer);
 });
 

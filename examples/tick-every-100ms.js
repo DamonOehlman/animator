@@ -1,5 +1,3 @@
 var animator = require('..');
 
-animator(function(tick) {
-  console.log(tick);
-}, 100);
+animator(tick => console.log(tick), 100);
