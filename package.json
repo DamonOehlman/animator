@@ -6,7 +6,7 @@
     "requestanimationframe",
     "animation"
   ],
-  "version": "0.2.2",
+  "version": "1.0.0",
   "dependencies": {},
   "devDependencies": {
     "crel": "^3.0.1"
