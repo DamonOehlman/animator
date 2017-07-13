@@ -1,3 +1,4 @@
+
 # animator
 
 Hook into request animation frame or setInterval if rAF not available.
@@ -5,6 +6,7 @@ Hook into request animation frame or setInterval if rAF not available.
 
 [![NPM](https://nodei.co/npm/animator.png)](https://nodei.co/npm/animator/)
 
+[![bitHound Score](https://www.bithound.io/github/DamonOehlman/animator/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/animator) 
 
 ## Usage
 
@@ -48,7 +50,7 @@ setTimeout(animation.stop, 5000);
 
 ### MIT
 
-Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2017 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
