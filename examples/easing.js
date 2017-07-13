@@ -1,20 +1,6 @@
 const animator = require('..');
 const crel = require('crel');
 
-function drawani(canvas, easingType) {
-  const context = canvas.getContext('2d');
-  const easeFn = animator.easing[easingType];
-
-  animator.tween(function(elapsed, duration, complete) {
-    const x = easeFn(elapsed, 100, 400, duration);
-    const y = easeFn(elapsed, 100, 400, duration);
-
-    // NOTE: clear rect is so slow...
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.fillRect(x, y, 10, 10);
-  }, 1500);
-}
-
 window.addEventListener('DOMContentLoaded', () => {
   const buttonContainer = crel('div');
   const easingTypeSelect = crel('select');
@@ -34,7 +20,18 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   btnAnimate.addEventListener('click', () => {
-    drawani(canvas, easingTypes[easingTypeSelect.selectedIndex]);
+    const easingType = easingTypes[easingTypeSelect.selectedIndex];
+    const context = canvas.getContext('2d');
+    const easeFn = animator.easing[easingType];
+
+    animator.tween(function(elapsed, duration, complete) {
+      const x = easeFn(elapsed, 100, 400, duration);
+      const y = easeFn(elapsed, 100, 400, duration);
+
+      // NOTE: clear rect is so slow...
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.fillRect(x, y, 10, 10);
+    }, 1500);
   });
 
   buttonContainer.appendChild(easingTypeSelect);
