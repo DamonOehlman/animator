@@ -1,3 +1,2 @@
-var animator = require('..');
-
+const animator = require('..');
 animator(tick => console.log(tick), 100);
