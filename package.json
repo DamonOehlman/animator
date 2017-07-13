@@ -9,7 +9,7 @@
   "version": "0.2.2",
   "dependencies": {},
   "devDependencies": {
-    "crel": "~1.1.0"
+    "crel": "^3.0.1"
   },
   "repository": {
     "type": "git",
