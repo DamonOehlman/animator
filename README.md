@@ -14,11 +14,9 @@ Register a function that you want to occur on every animation tick
 (roughly every 1000 / 60 seconds).
 
 ```js
-var animator = require('animator');
+const animator = require('animator');
+animator(tick => console.log(tick));
 
-animator(function(tick) {
-  console.log(tick);
-});
 ```
 
 You can also register a function that you want to execute every n
@@ -26,8 +24,7 @@ milliseconds.  For instance, the following would register a function
 that would execute **approximately** every 100ms.
 
 ```js
-var animator = require('animator');
-
+const animator = require('animator');
 animator(tick => console.log(tick), 100);
 
 ```
@@ -35,14 +32,12 @@ animator(tick => console.log(tick), 100);
 To remove an animation callback from the centralized list, use the detach function that is provided in the result of the animator function:
 
 ```js
-var animator = require('animator');
-
-var animation = animator(function(tick) {
-  console.log(tick);
-});
+const animator = require('animator');
+const animation = animator(tick => console.log(tick));
 
 // stop animating after 5 seconds
 setTimeout(animation.stop, 5000);
+
 ```
 
 ## License(s)
